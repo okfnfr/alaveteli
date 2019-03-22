@@ -424,6 +424,20 @@ describe FollowupsController do
       expect(response).to render_template('new')
     end
 
+    context 'a network error occurs while sending a followup' do
+
+      def send_request
+        post :create, params: {
+               outgoing_message: dummy_message,
+               request_id: request.id,
+               incoming_message_id: message_id
+             }
+      end
+
+      it_behaves_like 'NetworkSendErrors'
+
+    end
+
     it_behaves_like 'successful_followup_sent'
 
     it "updates the status for successful followup sends" do
