@@ -74,6 +74,23 @@ class OutgoingMessage < ActiveRecord::Base
     self.default_url_options[:protocol] = "https"
   end
 
+  def self.expected_send_errors
+    errors = [ EOFError,
+               IOError,
+               Timeout::Error,
+               Errno::ECONNRESET,
+               Errno::ECONNABORTED,
+               Errno::EPIPE,
+               Errno::ETIMEDOUT,
+               Net::SMTPAuthenticationError,
+               Net::SMTPServerBusy,
+               Net::SMTPSyntaxError,
+               Net::SMTPUnknownError,
+               OpenSSL::SSL::SSLError ]
+    errors << AWS::SES::ResponseError if defined?(AWS::SES::ResponseError)
+    errors.freeze
+  end
+
   def self.default_salutation(public_body)
     _("Dear {{public_body_name}},", :public_body_name => public_body.name)
   end
