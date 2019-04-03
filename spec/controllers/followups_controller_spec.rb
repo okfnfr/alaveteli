@@ -434,6 +434,8 @@ describe FollowupsController do
              }
       end
 
+      let(:outgoing_message) { request.reload.outgoing_messages.last }
+
       it_behaves_like 'NetworkSendErrors'
 
     end

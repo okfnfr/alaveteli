@@ -1165,6 +1165,7 @@ describe RequestController, "when creating a new request" do
     end
 
     let(:request) { assigns[:info_request] }
+    let(:outgoing_message) { request.reload.outgoing_messages.last }
 
     it_behaves_like 'NetworkSendErrors'
 

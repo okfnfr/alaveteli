@@ -32,6 +32,14 @@ shared_examples_for 'NetworkSendErrors' do
       expect(event.params[:reason]).to eq 'Connection timed out'
     end
 
+    it 'ensures that the outgoing message is persisted' do
+      expect(outgoing_message).to be_persisted
+    end
+
+    it 'ensures that the outgoing message status is set to "failed"' do
+      expect(outgoing_message.status).to eq 'failed'
+    end
+
   end
 
 end
