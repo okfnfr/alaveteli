@@ -38,7 +38,8 @@
                           <% end %>
                         </td>
                       </tr>
-                      <% if item.described_state == 'attention_requested' %>
+                      <% if item.described_state == 'attention_requested' ||
+                            item.last_event.event_type == 'send_error' %>
                       <tr>
                         <td><b>Reason</b></td>
                         <td>
