@@ -1,3 +1,67 @@
+# develop
+
+## Highlighted Features
+
+* Fixed a bug that meant request urls could unexpectedly change when the request
+  is edited if they're in the middle of a numbered sequence (Liz Conlan)
+* Fix search.png not being included in precompiled assets (Nigel Jones)
+* Drop support for Debian Jessie (Gareth Rees)
+* Disable the destroy authority button in the admin interface rather than hiding
+  it as that can be confusing with embargoed requests (Liz Conlan)
+* Highlight non-default states of "Prominence" in the admin
+  interface (Gareth Rees)
+* Fix bug were the header was displayed at the wrong width if the site only had
+  one language configured (Martin Wright)
+* Show the message from the user on the admin summary page for requests and
+  comments which have been flagged as needing administrator attention (Liz Conlan)
+* Log an event when a user reports a request and capture the message data
+  supplied by the user when they report a request as needing administrator
+  attention in the log (Liz Conlan)
+* Uses the url_name instead of a numeric id when sending messages between users
+  to prevent id guessing (Liz Conlan)
+* Reopen closed requests to allow responses from anybody when a new followup
+  message is sent, or an admin resends an outgoing message (Liz Conlan)
+* Warn users when their request is getting too long (Zarino Zappia)
+* Add a customisable email footer for emails sent to users (Liz Conlan)
+* Add one-click unsubscribe to `TrackMailer`-generated email notifications
+  (Gareth Rees)
+* Use the original subject line when sending an email reply to a
+  PublicBodyChangeRequest through the admin interface (Liz Conlan)
+* Improve logic for showing contact options when making followups to a request
+  (Liz Conlan)
+* Add guessing from the subject line of an incoming email in the holding pen
+  (Liz Conlan)
+* Improve guessing from addresses with missing punctuation for incoming email in
+  the holding pen (Liz Conlan)
+* Improve guessing from malformed addresses for incoming email in the holding
+  pen (Gareth Rees)
+* Add a `USER_CONTACT_FORM_RECAPTCHA` config setting to show a reCAPTCHA
+  on the user-to-user contact form if set to true (defaults to false)
+  (Liz Conlan)
+* Add a note to the top of the request page when a request thread is closed to
+  further correspondence (Liz Conlan)
+* Add an option to hide a request containing personal information (Gareth Rees)
+* Prevent censor rules from being unintentionally made permanent when admins
+  edit outgoing messages. Allow admins to see the unredacted outgoing message
+  text on request's admin page and in the associated event log (Liz Conlan)
+* Add a `CONTACT_FORM_RECAPTCHA` config setting to show a reCAPTCHA on the
+  contact form if set to true (defaults to false). Needs a small code snippet -
+  documented in the `general.yml-example` file to be added to the theme's
+  contact form for the reCAPTCHA to be displayed correctly (Liz Conlan)
+* Added support for Ubuntu 16.04 LTS (Xenial Xerus) (Graeme Porteous)
+
+## Upgrade Notes
+
+* The `hidden_incoming_message` factory has been removed. Use the `:hidden`
+  _trait_ instead if you rely on this in theme specs. See
+  https://github.com/thoughtbot/factory_bot/blob/v4.10.0/GETTING_STARTED.md#traits
+  for more information on traits.
+* We no longer support Debian Jessie. Please upgrade to Debian Stretch at the
+  earliest opportinuity.
+* The changes to the way dynamic routes work means that any themes that use
+  the `help_general_url` helper will need to pass in `:template` instead of
+  `:action`
+
 # 0.32.0.1
 
 ## Highlighted Features
